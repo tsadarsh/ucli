@@ -1,0 +1,11 @@
+name: gh-action
+on: [workflow_dispatch]
+jobs:
+  run-desired-cli:
+    runs-on: ubuntu-latest
+    steps:
+      name: 'example'
+      inputs:
+        command:
+          description: command to run
+          required: true
