@@ -9,3 +9,4 @@ jobs:
         command:
           description: command to run
           required: true
+      run: echo "I got $command argument"
