@@ -42,7 +42,7 @@ jobs:
         run: npm install ${{ github.event.inputs.js-package }}
         
       - name: Run installed library
-        run: ${{ github.event.inputs.command }}
+        run: npm run ${{ github.event.inputs.command }}
         
 #       - name: Run a multi-line script
 #         run: |
