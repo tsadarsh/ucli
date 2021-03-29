@@ -36,13 +36,19 @@ jobs:
 
 #       # Runs a set of commands using the runners shell
       - name: Install Dependencies
-        run: npm install
+        run: |
+          npm install
+          ls
         
       - name: Install JavaScript library
-        run: npm install ${{ github.event.inputs.js-package }}
+        run: |
+          npm install ${{ github.event.inputs.js-package }}
+          ls
         
       - name: Run installed library
-        run: npm run ${{ github.event.inputs.command }}
+        run: |
+          npm run ${{ github.event.inputs.command }}
+          ls
         
 #       - name: Run a multi-line script
 #         run: |
