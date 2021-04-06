@@ -4,8 +4,7 @@ name: CI
 
 # Controls when the action will run. 
 on:
-  repository_dispatch:
-    types: [start-example]
+  workflow_dispatch::
     inputs:
       js-package:
         description: 'Package to install from npm'
@@ -21,7 +20,7 @@ jobs:
   # This workflow contains a single job called "build"
   ucli:
     # The type of runner that the job will run on
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
