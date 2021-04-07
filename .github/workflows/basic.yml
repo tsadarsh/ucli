@@ -44,7 +44,7 @@ jobs:
 #         - run: mkdir -p output
 
         - name: test-run
-          run: ${{ github.event.command }} > log.txt
+          run: ${{ github.event.inputs.command }} > log.txt
 
         - uses: actions/upload-artifact@v2
           with:
