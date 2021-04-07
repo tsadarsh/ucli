@@ -6,6 +6,9 @@ name: CI
 on:
   workflow_dispatch:
     inputs:
+      name:
+        description: 'Provide unique name'
+        required: true
 #       js-package:
 #         description: 'Package to install from npm'
 #         required: true
@@ -48,7 +51,7 @@ jobs:
 
         - uses: actions/upload-artifact@v2
           with:
-            name: my-artifact
+            name: ${{ github.event.inputs.name }}
             path: log.txt
 
 #         - name: test-run
