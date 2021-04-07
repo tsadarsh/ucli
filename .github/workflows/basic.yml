@@ -10,9 +10,9 @@ on:
 #         description: 'Package to install from npm'
 #         required: true
 #         # default: 'Mona the Octocat'
-#       command:
-#         description: 'Command to execute'
-#         required: true
+      command:
+        description: 'Command to execute'
+        required: true
         # default: 'The Octoverse'
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
@@ -44,7 +44,7 @@ jobs:
 #         - run: mkdir -p output
 
         - name: test-run
-          run: corona-cli > log.txt
+          run: ${{ github.event.command }} > log.txt
 
         - uses: actions/upload-artifact@v2
           with:
