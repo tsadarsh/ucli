@@ -41,18 +41,15 @@ jobs:
 #       - name: Run installed library
 #         run: npx ${{ github.event.inputs.command }}
 
-        - uses: actions/checkout@v2
-
-        - run: mkdir -p output
-
+#         - run: mkdir -p output
 
         - name: test-run
-          run: corona-cli > output/log.txt
+          run: corona-cli > log.txt
 
         - uses: actions/upload-artifact@v2
           with:
             name: my-artifact
-            path: output/log.txt
+            path: log.txt
 
 #         - name: test-run
 #           run: corona-cli
