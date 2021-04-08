@@ -6,9 +6,9 @@ name: CI
 on:
   workflow_dispatch:
     inputs:
-#       name:
-#         description: 'Provide unique name'
-#         required: true
+      name:
+        description: 'Provide unique name'
+        required: true
       command:
         description: 'Command to execute'
         required: true
@@ -19,17 +19,9 @@ jobs:
   ucli:
     # The type of runner that the job will run on
     runs-on: self-hosted
-    
-    env:
-      name: default
 
     # Steps represent a sequence of tasks that will be executed as part of the job
-    steps:
-        - name: get unique job-name
-          run: |
-            name=$(curl https://random.justyy.workers.dev/api/random/?n=12)
-            ${{ env.NAME }} = name
-            
+    steps:  
         - name: run user provided command
           run: ${{ github.event.inputs.command }} > log.txt
 
