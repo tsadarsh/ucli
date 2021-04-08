@@ -6,58 +6,35 @@ name: CI
 on:
   workflow_dispatch:
     inputs:
-      name:
-        description: 'Provide unique name'
-        required: true
-#       js-package:
-#         description: 'Package to install from npm'
+#       name:
+#         description: 'Provide unique name'
 #         required: true
-#         # default: 'Mona the Octocat'
       command:
         description: 'Command to execute'
         required: true
-        # default: 'The Octoverse'
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
+  # This workflow contains a single job called "ucli"
   ucli:
     # The type of runner that the job will run on
     runs-on: self-hosted
+    
+    env:
+      name: default
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-#       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-#       - uses: actions/checkout@v2
-
-#       # Runs a single command using the runners shell
-#       - name: Run a one-line script
-#         run: echo Hello, world!
-
-#       # Runs a set of commands using the runners shell
-#       - name: Install Dependencies
-#         run: npm install
-        
-#       - name: Install JavaScript library
-#         run: npm install ${{ github.event.inputs.js-package }}
-        
-#       - name: Run installed library
-#         run: npx ${{ github.event.inputs.command }}
-
-#         - run: mkdir -p output
-
-        - name: test-run
+        - name: get unique job-name
+          run: |
+            name=$(curl https://random.justyy.workers.dev/api/random/?n=12)
+            ${{ env.NAME = name }}
+            
+        - name: run user provided command
           run: ${{ github.event.inputs.command }} > log.txt
 
         - uses: actions/upload-artifact@v2
           with:
             name: ${{ github.event.inputs.name }}
             path: log.txt
-
-#         - name: test-run
-#           run: corona-cli
-
-#       - name: Run a multi-line script
-#         run: |
-#           echo "Hi ${{ github.event.inputs.name }}!"
-#           echo "You're in ${{ github.event.inputs.home }}."
+            retention-days: 1
