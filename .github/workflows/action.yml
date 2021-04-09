@@ -33,7 +33,7 @@ jobs:
             https://api.github.com/repos/tsadarsh/ucli/issues | jq '.[0]')
             command=$issue | jq '.title' | cut -d'"' -f 2
             number=$issue | jq '.number' | cut -d'"' -f 2
-            command > log.txt
+            $command > log.txt
             
         - uses: actions/upload-artifact@v2
           with:
