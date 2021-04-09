@@ -1,0 +1,38 @@
+# This is a basic workflow to help you get started with Actions
+
+name: ucli-trial-2
+
+# Controls when the action will run. 
+on:
+  issues:
+    types: [opened]
+    inputs:
+      name:
+        description: 'Provide unique name'
+        required: true
+      command:
+        description: 'Command to execute'
+        required: true
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "ucli"
+  ucli:
+    # The type of runner that the job will run on
+    runs-on: self-hosted
+
+    env:
+      token: ${{ env.UCLI_TRIAL }}
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+        - name: command
+          run: |
+            issue=$(curl -H "Authorization: token $token" \
+            https://api.github.com/repos/tsadarsh/ucli/issues | jq '.[0]')
+            command=$issue | jq '.title' | cut -d'"' -f 2
+            number=$issue | jq '.number' | cut -d'"' -f 2
+            log=$(command)
+            curl -H "Authorization: token $token" \
+            https://api.github.com/repos/tsadarsh/ucli/issues/$number/comments \
+            -d "{\"body\":\"$log\"}"

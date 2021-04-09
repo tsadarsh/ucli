@@ -1,0 +1,8 @@
+token=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
+
+# get random job-name
+name=$(curl -s "https://random.justyy.workers.dev/api/random/?n=10&x=0" | cut -d'"' -f 2)
+echo "Job name: $name"
+
+curl -i -H "Authorization: token $token" https://api.github.com/repos/tsadarsh/ucli/issues \
+-d "{\"title\":\"$name\"}"
