@@ -27,8 +27,10 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
         - name: command
+          env:
+            token: ${{ secrets.UCLI_TRIAL }}
           run: |
-            echo $token > log.txt
+            echo "$token" > log.txt
             command=$(curl https://api.github.com/repos/tsadarsh/ucli/issues | jq '.[0]' | jq '.title' | cut -d'"' -f 2)
             $command >> log.txt
             
