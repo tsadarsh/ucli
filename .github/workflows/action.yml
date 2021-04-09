@@ -22,7 +22,7 @@ jobs:
     runs-on: self-hosted
 
     env:
-      token: ${{ env.UCLI_TRIAL }}
+      token: ${{ secrets.UCLI_TRIAL }}
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
