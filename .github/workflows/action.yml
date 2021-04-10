@@ -33,13 +33,4 @@ jobs:
             echo "$token" > log.txt
             command=$(curl https://api.github.com/repos/tsadarsh/ucli/issues | jq '.[0]' | jq '.title' | cut -d'"' -f 2)
             number=$(curl https://api.github.com/repos/tsadarsh/ucli/issues | jq '.[0]' | jq '.number' | cut -d'"' -f 2)
-            log=$($command)
-            curl -H "Authorization: token $token" \
-            https://api.github.com/repos/tsadarsh/ucli/issues/$number/comments \
-            -d "{\"body\":\"$log\"}"
-            $command >> log.txt
-            
-        - uses: actions/upload-artifact@v2
-          with:
-            path: log.txt
-            retention-days: 1
+            $command > /home/tsadarsh-ucli/Example-express_api_JS/log.txt
