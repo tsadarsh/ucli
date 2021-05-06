@@ -1,0 +1,35 @@
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background: linear-gradient(#373d4f, #222633)
+}
+h1 {
+  color: #9034fa;
+  font-size: 100px;
+  height: 20vh;
+}
+h2 {
+  color: #fa347d;
+  height: 10vh;
+}
+.termainals {
+  height: 10vh;
+}
+.terminal-link {
+  text-decoration: none;
+  color: #00c903;
+  border-radius: 10px;
+  padding: 10px 20px;
+  border: solid 3px;
+}
+.terminal-link:hover {
+  border: none;
+  color: white;
+  background: #00c903;
+  box-shadow: 0 0 10px #00c903,
+              0 0 25px #00c903,
+              0 0 50px #00c903;
+}
