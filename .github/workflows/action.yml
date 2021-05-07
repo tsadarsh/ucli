@@ -1,0 +1,9 @@
+name: Start Azure VM
+on:
+  workflow_dispatch:
+jobs:
+  start_vm:
+    runs-on: self-hosted
+    steps:
+    - run: |
+        sudo docker restart keen_goodall
