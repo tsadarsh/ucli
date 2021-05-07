@@ -1,0 +1,10 @@
+name: Prepare Azure VM for ucli
+on:
+  workflow_dispatch:
+jobs:
+  prepare_vm:
+    runs-on: self-hosted
+    steps:
+    - run: |
+        sudo docker restart keen_goodall
+        sudo docker exec -t keen_goodall ttyd -p 8081 bash
