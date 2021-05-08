@@ -5,7 +5,7 @@ az vm start -g ucli-trial_group -n ucli-trial
 az vm run-command invoke -g ucli-trial_group -n ucli-trial --command-id RunShellScript --scripts "sudo docker restart keen_goodall"
 
 # run ttyd in container
-az vm run-command invoke -g ucli-trial_group -n ucli-trial --command-id RunShellScript --scripts "sudo docker exec -t keen_goodall ttyd -p 8081 bash"
+az vm run-command invoke -g ucli-trial_group -n ucli-trial --command-id RunShellScript --scripts "sudo docker exec -d keen_goodall ttyd -p 8081 bash"
 
 # stop container
 az vm run-command invoke -g ucli-trial_group -n ucli-trial --command-id RunShellScript --scripts "sudo docker stop keen_goodall"
