@@ -7,6 +7,9 @@ az vm run-command invoke -g ucli-trial_group -n ucli-trial --command-id RunShell
 # run ttyd in container
 az vm run-command invoke -g ucli-trial_group -n ucli-trial --command-id RunShellScript --scripts "sudo docker exec -d keen_goodall ttyd -p 8081 bash"
 
+# run ttyd in seperate container for each user
+sudo ttyd docker run -it --rm ubuntu bash
+
 # stop container
 az vm run-command invoke -g ucli-trial_group -n ucli-trial --command-id RunShellScript --scripts "sudo docker stop keen_goodall"
 
