@@ -7,11 +7,21 @@ az vm run-command invoke -g ucli-trial_group -n ucli-trial --command-id RunShell
 # run ttyd in container
 az vm run-command invoke -g ucli-trial_group -n ucli-trial --command-id RunShellScript --scripts "sudo docker exec -d keen_goodall ttyd -p 8081 bash"
 
-# run ttyd in seperate container for each user
-sudo ttyd docker run -it --rm ubuntu bash
+# start ngnix
+sudo /etc/init.d/nginx start
+
+# run uwsgi in background
+uwsgi --socket :9000 --module ucli.wsgi &
+
+# run ttyd in seperate container in background for each user
+sudo ttyd -t titleFixed=ucli-BASH docker run -it --rm ubuntu bash &
 
 # stop container
 az vm run-command invoke -g ucli-trial_group -n ucli-trial --command-id RunShellScript --scripts "sudo docker stop keen_goodall"
+
+# to stop ttyd running in background
+# note pid to kill
+sudo ps -a | less
 
 # stop and deallocate vm
 az vm deallocate -g ucli-trial_group -n ucli-trial
