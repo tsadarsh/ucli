@@ -1,3 +1,4 @@
+SERVICE STOPPED TEMPORARILY. WOKRING ON SECURITY UPDATES
 # ucli - Universal Command Line
 
 ## Command Line for everyone 👨‍👩‍👧‍👦
