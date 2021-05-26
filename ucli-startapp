@@ -13,8 +13,8 @@ sudo /etc/init.d/nginx start
 # run uwsgi in background
 uwsgi --socket :9000 --module ucli.wsgi &
 
-# run ttyd in seperate container in background for each user
-sudo ttyd -t titleFixed=ucli-BASH docker run -it --rm ubuntu bash &
+# run ttyd in seperate container in background for each user (from dir` ucli`)
+sudo ttyd -t titleFixed=ucli-BASH -a ../ttyd/auth.sh &
 
 # stop container
 az vm run-command invoke -g ucli-trial_group -n ucli-trial --command-id RunShellScript --scripts "sudo docker stop keen_goodall"
